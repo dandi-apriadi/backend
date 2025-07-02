@@ -110,6 +110,7 @@ export const Me = async (req, res) => {
         const { User } = await import("../../models/userModel.js");
         
         if (!req.session.user_id) {
+            console.log(process.env.NODE_ENV);
             return res.status(401).json({ msg: "Mohon login ke akun anda" });
         }
         const user = await User.findOne({

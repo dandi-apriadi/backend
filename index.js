@@ -15,7 +15,6 @@ import { Server } from 'socket.io';
 import { WebSocketServer } from 'ws';
 import db from './config/Database.js';
 
-// Import routes
 import authRoutes from './routes/shared/authRoutes.js';
 import esp32Routes from './routes/esp32Routes.js';
 import modelDataRoutes from './routes/modelDataRoutes.js';
@@ -30,7 +29,6 @@ import pumpRoutes from './routes/pumpRoutes.js'; // Import the new pump routes
 // Import the new data processing function
 import { processWebSocketData } from './controllers/esp32Controller.js';
 
-// Define ESP32 data processing function
 const processESP32Data = (data) => {
     // Ensure all values are correct types
     return {
@@ -232,9 +230,7 @@ const fileUploadMiddleware = fileUpload({
     }
 });
 
-// Apply fileUpload middleware only to routes that actually need it
 app.use(['/api/upload', '/files'], fileUploadMiddleware);
-// Use basic express.json and urlencoded for other routes
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true }));
 
@@ -879,11 +875,6 @@ io.on('connection', (socket) => {
     });
 });
 
-// Add the missing checkInactiveDevices function
-/**
- * Checks for inactive devices and updates their status
- * Called periodically by setInterval to detect offline devices
- */
 async function checkInactiveDevices() {
     try {
         const now = Date.now();
