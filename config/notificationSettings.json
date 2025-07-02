@@ -1,0 +1,11 @@
+{
+  "methods": {
+    "email": true,
+    "whatsapp": false
+  },
+  "contact": {
+    "email": "user@example.com",
+    "emailPassword": "",
+    "phone": ""
+  }
+}

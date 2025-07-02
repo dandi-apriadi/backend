@@ -1,0 +1,43 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start:esp32": "node index_with_esp32.js",
+    "dev": "nodemon index_with_esp32.js",
+    "monitor": "node scripts/esp32_monitor.js",
+    "health": "node scripts/system_health_check.js",
+    "health:interactive": "node scripts/system_health_check.js --interactive",
+    "simulate": "cd ../ESP32 && python advanced_test_simulator.py --interactive"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "argon2": "^0.31.0",
+    "axios": "^1.7.9",
+    "connect-session-sequelize": "^7.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "helmet": "^6.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.46",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.5",
+    "prop-types": "^15.8.1",
+    "sequelize": "^6.37.6",
+    "sharp": "^0.32.1",
+    "socket.io": "^4.7.0",
+    "uuid": "^9.0.0",
+    "ws": "^8.14.0"
+  }
+}
