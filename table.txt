@@ -1,0 +1,286 @@
+// DBDiagram.io - Area51 Database Schema
+
+Table "banners" {
+  "banner_id" varchar [pk]
+  "title" varchar
+  "description" text
+  "image_url" varchar
+  "category" enum('product','services')
+  "status" enum('active','inactive')
+  "created_by" varchar
+  "updated_by" varchar
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "blogs" {
+  "blog_id" varchar [pk]
+  "title" varchar
+  "slug" varchar [unique]
+  "content" longtext
+  "summary" varchar
+  "image" varchar
+  "author_id" varchar
+  "author_name" varchar
+  "category" varchar
+  "published" tinyint
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "blog_comments" {
+  "comment_id" varchar [pk]
+  "blog_id" varchar
+  "user_id" varchar
+  "commenter_name" varchar
+  "commenter_email" varchar
+  "content" text
+  "status" enum('approved','pending','spam')
+  "created_at" datetime
+}
+
+Table "blog_tags" {
+  "tag_id" varchar [pk]
+  "blog_id" varchar
+  "name" varchar
+}
+
+Table "cart" {
+  "cart_id" varchar [pk]
+  "user_id" varchar
+  "product_id" varchar
+  "variant_id" varchar
+  "sku_id" varchar
+  "quantity" int
+  "price" decimal
+  "sub_total" decimal
+  "status" enum('active','checkout')
+  "created_at" datetime
+}
+
+Table "categories" {
+  "category_id" varchar [pk]
+  "name" varchar
+  "description" text
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "notifications" {
+  "notification_id" varchar [pk]
+  "user_id" varchar
+  "title" varchar
+  "message" text
+  "type" enum('order_update','promo','system_alert','payment','order')
+  "status" enum('unread','read')
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "orders" {
+  "order_id" varchar [pk]
+  "user_id" varchar
+  "fullname" varchar
+  "email" varchar
+  "phone_number" varchar
+  "shipping_address" text
+  "province" varchar
+  "city" varchar
+  "district" varchar
+  "postal_code" varchar
+  "courier" varchar
+  "shipping_package" varchar
+  "shipping_cost" decimal
+  "shipping_notes" text
+  "shipping_estimate" varchar
+  "shipping_method" varchar
+  "payment_method" varchar
+  "payment_option" varchar
+  "payment_status" enum('pending','paid','failed','refunded','submitted')
+  "payment_proof_url" varchar
+  "order_status" enum('pending','processing','shipped','delivered','cancelled')
+  "subtotal" decimal
+  "total_amount" decimal
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "order_items" {
+  "item_id" varchar [pk]
+  "order_id" varchar
+  "product_id" varchar
+  "variant_id" varchar
+  "sku_id" varchar
+  "quantity" int
+  "price" decimal
+  "subtotal" decimal
+}
+
+Table "payments" {
+  "payment_id" varchar [pk]
+  "order_id" varchar
+  "method" enum('credit_card','bank_transfer','e-wallet','cash_on_delivery')
+  "status" enum('success','failed','pending')
+  "payment_date" datetime
+}
+
+Table "products" {
+  "product_id" varchar [pk]
+  "name" varchar
+  "description" text
+  "price" int
+  "stock" int
+  "category_id" varchar
+  "image_url" varchar
+  "status" enum('available','unavailable')
+  "created_at" datetime
+  "updated_at" datetime
+  "banner" tinyint
+  "brand" varchar
+}
+
+Table "products_benefits" {
+  "benefit_id" varchar [pk]
+  "product_id" varchar
+  "name" varchar
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "products_views" {
+  "view_id" varchar [pk]
+  "product_id" varchar
+  "user_id" varchar
+  "ip_address" varchar
+  "session_id" varchar
+  "view_count" int
+  "view_date" datetime
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "product_gallery" {
+  "image_id" varchar [pk]
+  "product_id" varchar
+  "image_url" varchar
+  "alt_text" varchar
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "product_likes" {
+  "like_id" varchar [pk]
+  "product_id" varchar
+  "user_id" varchar
+  "created_at" datetime
+}
+
+Table "product_variant" {
+  "variant_id" varchar [pk]
+  "product_id" varchar
+  "name" varchar
+  "img_url" varchar
+  "created_at" datetime
+}
+
+Table "reports" {
+  "report_id" char [pk]
+  "fullname" varchar
+  "email" varchar
+  "phone" varchar
+  "subject" varchar
+  "message" text
+  "status" enum('unread','read','replied')
+  "createdAt" datetime
+  "updatedAt" datetime
+}
+
+Table "reviews" {
+  "review_id" varchar [pk]
+  "product_id" varchar
+  "user_id" varchar
+  "rating" int
+  "comment" text
+  "created_at" datetime
+}
+
+Table "sessions" {
+  "sid" varchar [pk]
+  "expires" datetime
+  "data" text
+  "createdAt" datetime
+  "updatedAt" datetime
+}
+
+Table "settings" {
+  "setting_id" int [pk, increment]
+  "category" enum('general','notification','security','data','integration')
+  "key" varchar
+  "value" text
+  "data_type" enum('string','number','boolean','json')
+  "created_at" datetime
+  "updated_at" datetime
+}
+
+Table "users" {
+  "user_id" varchar [pk]
+  "fullname" varchar
+  "role" enum('admin','customer','seller')
+  "profile_picture" varchar
+  "gender" enum('male','female')
+  "email" varchar
+  "password" varchar
+  "status" enum('active','inactive','banned')
+  "verified" tinyint
+  "token" varchar
+  "created_at" datetime
+  "updated_at" datetime
+  "phone_number" varchar
+  "address" text
+  "province_id" int
+  "city_id" int
+  "district_id" int
+  "postal_code" varchar
+}
+
+Table "variant_sku" {
+  "sku_id" varchar [pk]
+  "variant_id" varchar
+  "name" varchar
+  "price" decimal
+  "created_at" datetime
+}
+
+Table "wishlist" {
+  "wishlist_id" varchar [pk]
+  "user_id" varchar
+  "product_id" varchar
+  "added_at" datetime
+}
+
+// Relationships
+Ref: "blogs"."author_id" > "users"."user_id"
+Ref: "blog_comments"."blog_id" > "blogs"."blog_id" [delete: cascade, update: cascade]
+Ref: "blog_comments"."user_id" > "users"."user_id"
+Ref: "blog_tags"."blog_id" > "blogs"."blog_id" [delete: cascade, update: cascade]
+Ref: "cart"."user_id" > "users"."user_id" [delete: cascade, update: cascade]
+Ref: "cart"."product_id" > "products"."product_id" [update: cascade]
+Ref: "cart"."variant_id" > "product_variant"."variant_id" [delete: set null, update: cascade]
+Ref: "cart"."sku_id" > "variant_sku"."sku_id" [delete: set null, update: cascade]
+Ref: "notifications"."user_id" > "users"."user_id"
+Ref: "orders"."user_id" > "users"."user_id" [delete: cascade, update: cascade]
+Ref: "order_items"."order_id" > "orders"."order_id" [delete: cascade, update: cascade]
+Ref: "order_items"."product_id" > "products"."product_id" [update: cascade]
+Ref: "order_items"."variant_id" > "product_variant"."variant_id"
+Ref: "order_items"."sku_id" > "variant_sku"."sku_id"
+Ref: "payments"."order_id" > "orders"."order_id" [delete: cascade]
+Ref: "products"."category_id" > "categories"."category_id" [delete: cascade, update: cascade]
+Ref: "products_benefits"."product_id" > "products"."product_id" [delete: cascade, update: cascade]
+Ref: "products_views"."product_id" > "products"."product_id" [delete: cascade, update: cascade]
+Ref: "product_gallery"."product_id" > "products"."product_id" [delete: cascade, update: cascade]
+Ref: "product_likes"."product_id" > "products"."product_id" [delete: cascade, update: cascade]
+Ref: "product_variant"."product_id" > "products"."product_id" [delete: cascade, update: cascade]
+Ref: "reviews"."product_id" > "products"."product_id"
+Ref: "reviews"."user_id" > "users"."user_id"
+Ref: "variant_sku"."variant_id" > "product_variant"."variant_id" [delete: cascade, update: cascade]
+Ref: "wishlist"."user_id" > "users"."user_id"

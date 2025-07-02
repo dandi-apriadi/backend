@@ -1,0 +1,634 @@
+/* Add to your global CSS file */
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari and Opera */
+}
+
+/* Smooth scrolling */
+.smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure images load properly */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Prevent image drag */
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+/* Ensure proper image loading */
+img[loading="lazy"] {
+    background-color: #1f2937;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Card animations */
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Text truncation */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Enhanced image handling */
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-font-smoothing: subpixel-antialiased;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* Improve loading state */
+.card-image.loading {
+    background: linear-gradient(110deg, #1f2937 8%, #374151 18%, #1f2937 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Image handling */
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+/* Improve image rendering */
+.object-cover {
+    object-fit: cover;
+    font-family: 'object-fit: cover';
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glass morphism effects */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced glass effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Card hover animation */
+.card-hover:hover .card-image {
+    transform: scale(1.05);
+}
+
+/* Button hover effects */
+
+/* Button effects */
+
+/* Optional: Add button press effect */
+
+/* Button shared styles */
+.btn-shared {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    transition: background 0.3s ease; /* Only transition the background */
+}
+
+.btn-shared:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: none; /* Remove the transform */
+}
+
+.btn-shared:active {
+    transform: none; /* Remove the transform */
+}
+
+/* Smooth transitions */
+.transition-all {
+    transition: background 0.3s ease, opacity 0.3s ease; /* Only transition necessary properties */
+}
+
+/* Smooth transitions */
+.transition-transform {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
+}
+
+/* Smooth hover transitions */
+.hover-lift {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+}
+
+/* Content reveal animation */
+.content-reveal {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .content-reveal {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Disabled button styles */
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+/* Glass effect */
+.backdrop-blur {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Enhanced glossy effects */
+.backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Glossy badge effect */
+.glossy-badge {
+    position: relative;
+    overflow: hidden;
+}
+
+.glossy-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 10%,
+        rgba(255, 255, 255, 0.4) 20%,
+        rgba(255, 255, 255, 0.2) 30%,
+        transparent 40%
+    );
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    20% {
+        left: 100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Enhanced hover effect */
+.glossy-badge:hover {
+    box-shadow: 0 8px 16px -4px rgba(20, 184, 166, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Smooth transitions */
+.glossy-badge {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backface-visibility: hidden;
+}
+
+/* Card opacity transitions */
+.opacity-transition {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Active card styles */
+.active-card {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 10;
+    box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.3);
+}
+
+/* Inactive card styles */
+.inactive-card {
+    opacity: 0.4;
+    transform: scale(0.95);
+}
+
+.inactive-card:hover {
+    opacity: 0.8;
+}
+
+/* Card container effects */
+.backdrop-filter {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+/* Enhanced shadow for depth */
+.shadow-enhanced {
+    box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.3),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient background animation */
+.bg-gradient-animate {
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Minimalist card transitions */
+.card-transition {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Clean shadows */
+.shadow-subtle {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Enhanced gradient overlay */
+.gradient-overlay {
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.4) 40%,
+        transparent 100%
+    );
+}
+
+/* Improved text readability */
+.drop-shadow-md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Card hover effect */
+.group:hover .card-image {
+    transform: scale(1.05);
+}
+
+/* Enhanced text readability */
+.drop-shadow-lg {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Dynamic text sizing transitions */
+.text-lg, .text-xl, .text-2xl {
+    transition: font-size 0.3s ease-in-out;
+}
+
+/* Ensure text wrapping behaves consistently */
+h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Enhanced background image handling */
+.background-image-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Smooth background transitions */
+.transition-background {
+    transition: background-image 0.7s ease-in-out;
+}
+
+/* Enhanced category badge effects */
+.category-badge {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Glow effect */
+.glow-effect {
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(20, 184, 166, 0.5);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(20, 184, 166, 0.7);
+    }
+}
+
+/* Enhanced glossy effect for category badge */
+.category-badge-glossy {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Shimmering animation */
+@keyframes shimmerGlow {
+    0% {
+        background-position: -200% center;
+        box-shadow: 0 0 15px rgba(20, 184, 166, 0.3);
+    }
+    100% {
+        background-position: 200% center;
+        box-shadow: 0 0 25px rgba(20, 184, 166, 0.5);
+    }
+}
+
+/* Hover animation for icon */
+@keyframes floatRotate {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-2px) rotate(12deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+}
+
+/* Hover animation */
+@keyframes subtle-glow {
+    0% {
+        box-shadow: 0 0 10px rgba(20, 184, 166, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(20, 184, 166, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(20, 184, 166, 0.2);
+    }
+}
+
+/* Apply animation to category badge on hover */
+.group:hover .category-badge {
+    animation: subtle-glow 2s ease-in-out infinite;
+}
+
+/* Bubble transition animation */
+@keyframes bubbleGrow {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(5px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.bubble-transition {
+  animation: bubbleGrow 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: center;
+}
+
+.background-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.background-layer {
+  position: absolute;
+  inset: 0;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.background-overlay {
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  backdrop-filter: blur(4px);
+}
+
+/* Add smooth fade for overlay */
+.background-overlay {
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modern transition effects */
+@keyframes slideReveal {
+  0% {
+    clip-path: circle(0% at center);
+    transform: scale(1.1);
+    filter: blur(10px);
+  }
+  50% {
+    clip-path: circle(70% at center);
+    filter: blur(5px);
+  }
+  100% {
+    clip-path: circle(150% at center);
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+.slide-reveal {
+  animation: slideReveal 1.4s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(4%) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.slide-reveal {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.background-overlay {
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced button and indicator animations */
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255,255,255,0.15);
+    }
+}
+
+.nav-button:hover {
+    animation: none; /* Remove the pulse animation */
+}
+
+.group:hover .nav-icon {
+    filter: none; /* Remove the drop shadow effect */
+}
+
+/* Smooth indicator transitions */
+.indicator-active {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card glossy effects */
+.card-glossy {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+@keyframes glossyShimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Add this to enhance the active card effect */
+.active-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    animation: glossyShimmer 2s linear infinite;
+    pointer-events: none;
+}
+
+.flex {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideProgress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+.progress-bar {
+    transform-origin: left;
+    animation: slideProgress 500ms ease-out;
+}
+
+@keyframes softPing {
+    0% { transform: scale(1); opacity: 1; }
+    75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+.animate-ping {
+    animation: softPing 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Add these new animations */
+@keyframes morphGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(20,184,166,0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(20,184,166,0.5));
+    }
+}
+
+@keyframes softPulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.05); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+.indicator-pill {
+    animation: softPulse 2s ease-in-out infinite;
+}
+
+.nav-button-glow {
+    animation: none; /* Remove the morphGlow animation */
+}

@@ -1,0 +1,94 @@
+/* 
+ * Dashboard Stability CSS
+ * Overrides that disable animations and transitions that cause flickering
+ */
+
+/* Disable all animations on dashboard components */
+.highlight-update,
+.sensor-value-change,
+.value-highlight,
+.data-refresh,
+[class*="highlight-"],
+[class*="-highlight"] {
+  animation: none !important;
+  transition: none !important;
+  background-color: inherit !important;
+}
+
+/* Ensure text doesn't flash or blink */
+.text-xl,
+.text-3xl,
+.font-bold {
+  transition: none !important;
+}
+
+/* Disable progress bar animations */
+.relative .absolute {
+  transition: width 0s linear !important;
+}
+
+/* Reduce update flicker by disabling transitions on chart components */
+.recharts-wrapper * {
+  transition: none !important;
+}
+
+/* Disable all color flash effects */
+.bg-blue-50,
+.bg-green-50,
+.bg-purple-50,
+.bg-orange-50 {
+  transition: none !important;
+}
+
+/* CSS utilities for stabilizing dashboard visuals */
+
+/* Animation for status indicators */
+.status-indicator {
+  display: inline-block;
+}
+
+/* Smooth transition for value changes */
+.changing-value {
+  transition: all 0.3s ease-out;
+}
+
+/* Soft highlight animation for updated values */
+@keyframes soft-highlight {
+  0% { background-color: rgba(96, 165, 250, 0); }
+  50% { background-color: rgba(96, 165, 250, 0.2); }
+  100% { background-color: rgba(96, 165, 250, 0); }
+}
+
+.highlight-update {
+  animation: soft-highlight 2s ease-out;
+}
+
+/* Single pulse animation */
+@keyframes pulse-once {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.animate-pulse-once {
+  animation: pulse-once 2s ease-out;
+}
+
+/* Sensor card styling */
+.sensor-card {
+  transition: all 0.3s ease;
+}
+
+.sensor-card.updated {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* Data update indicator fade */
+.data-update-indicator {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.data-update-indicator.visible {
+  opacity: 1;
+}
