@@ -1,0 +1,12 @@
+###
+# Testing
+GET http://localhost:5000/api/shared/me
+
+###
+POST http://localhost:5000/api/shared/login
+Content-Type: application/json
+
+{
+    "email": "dandigeming85@gmail.com",
+    "password": "123"
+}

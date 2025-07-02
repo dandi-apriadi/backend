@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
-import moment from "moment";
-import { v4 as uuidv4 } from "uuid";
-import argon2 from "argon2";
+import moment from "moment"; // Re-enabled: Used in date getters
+import { v4 as uuidv4 } from "uuid"; // To generate user_id and token
+import argon2 from "argon2"; // Re-enabled: Used in password hashing hooks
 
 const { DataTypes } = Sequelize;
 
@@ -20,9 +20,14 @@ const User = db.define('users', {
         defaultValue: '-'
     },
     role: {
-        type: DataTypes.ENUM('admin', 'customer', 'seller'),
+        type: DataTypes.ENUM('admin', 'user'),
         allowNull: false,
-        defaultValue: 'customer'
+        defaultValue: 'user'
+    },
+    profile_picture: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'default-profile.png'
     },
     gender: {
         type: DataTypes.ENUM('male', 'female'),
@@ -32,8 +37,9 @@ const User = db.define('users', {
         }
     },
     email: {
-        type: DataTypes.STRING(191),
+        type: DataTypes.STRING(191), // Reduced length for better indexing
         allowNull: false,
+        unique: true, // Emails should generally be unique
         validate: {
             isEmail: true
         }
@@ -47,10 +53,58 @@ const User = db.define('users', {
         allowNull: false,
         defaultValue: 'active'
     },
+    verified: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    },
     token: {
         type: DataTypes.STRING,
         defaultValue: () => uuidv4(),
         allowNull: true
+    },
+    // New fields for accreditation system
+    employee_id: {
+        type: DataTypes.STRING,
+        allowNull: true
+        // unique: true // Removed: Rely on the more specific index definition below
+    },
+    department: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    position: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    academic_rank: {
+        type: DataTypes.ENUM('professor', 'associate_professor', 'assistant_professor', 'lecturer', 'assistant_lecturer', 'none'),
+        allowNull: true,
+        defaultValue: 'none'
+    },
+    expertise: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    highest_degree: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    institution: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    phone_number: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    last_login: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        get() {
+            const value = this.getDataValue('last_login');
+            return value ? moment(value).format('D MMMM, YYYY, h:mm A') : null;
+        }
     },
     created_at: {
         type: DataTypes.DATE,
@@ -71,7 +125,21 @@ const User = db.define('users', {
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',
-    indexes: [],
+    indexes: [
+        {
+            unique: true,
+            fields: ['email']
+        },
+        {
+            unique: true,
+            fields: ['employee_id'],
+            where: {
+                employee_id: {
+                    [Sequelize.Op.ne]: null
+                }
+            }
+        }
+    ],
     hooks: {
         beforeCreate: async (user) => {
             if (user.password) {
